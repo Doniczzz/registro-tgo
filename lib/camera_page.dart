@@ -22,35 +22,35 @@ class CameraPage extends StatelessWidget {
         defaultCameraLens: CameraLens.front,
         onCapture: (image) async {
           print('object');
-          // await repo.saveFace(email, image!).then(
-          //   (result) {
-          //     Navigator.of(context).pop();
-          //     if (result.isSuccess!) {
-          //       showDialog(
-          //         context: context,
-          //         builder: (context) {
-          //           return AlertDialog(
-          //             title: const Text(
-          //               'Cara registrada con éxito',
-          //               style: TextStyle(color: Colors.green),
-          //             ),
-          //             actions: <Widget>[
-          //               TextButton(
-          //                 onPressed: () {
-          //                   Navigator.of(context).pop();
-          //                 },
-          //                 child: const Text('Cerrar'),
-          //               ),
-          //             ],
-          //           );
-          //         },
-          //       );
-          //     } else {
-          //       // Caso de error
-          //       errorDialog(context, result);
-          //     }
-          //   },
-          // );
+          await repo.saveFace(email, image!).then(
+            (result) {
+              Navigator.of(context).pop();
+              if (result.isSuccess!) {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text(
+                        'Cara registrada con éxito',
+                        style: TextStyle(color: Colors.green),
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Cerrar'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              } else {
+                // Caso de error
+                errorDialog(context, result);
+              }
+            },
+          );
         },
       ),
     );
